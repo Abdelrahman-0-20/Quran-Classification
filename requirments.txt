@@ -1,6 +1,5 @@
 streamlit
-librosa
-scikit-learn 
 pandas
 numpy
-joblib
+librosa
+scikit-learn
