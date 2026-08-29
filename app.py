@@ -13,9 +13,9 @@ st.set_page_config(page_title="Audio Classifier", layout="centered")
 
 MODEL_PATH = "model.pkl"
 
-# ------------------------------------------------------------
+
 # Feature extraction
-# ------------------------------------------------------------
+ 
 def extract_features(audio_path):
     y, sr = librosa.load(audio_path, sr=None)
     mfccs = librosa.feature.mfcc(y=y, sr=sr, n_mfcc=13)
@@ -32,9 +32,9 @@ def extract_features(audio_path):
 
     return pd.Series(feature_dict)
 
-# ------------------------------------------------------------
+# 
 # Model persistence
-# ------------------------------------------------------------
+ 
 def save_model(model):
     with open(MODEL_PATH, "wb") as f:
         pickle.dump(model, f)
@@ -45,9 +45,9 @@ def load_model():
             return pickle.load(f)
     return None
 
-# ------------------------------------------------------------
+ 
 # Training
-# ------------------------------------------------------------
+# 
 def train_model(dataset_dir):
     # Collect all WAV files recursively
     wav_files = glob.glob(os.path.join(dataset_dir, "**", "*.wav"), recursive=True)
@@ -96,9 +96,9 @@ def train_model(dataset_dir):
     save_model(model)
     return model
 
-# ------------------------------------------------------------
+ 
 # UI
-# ------------------------------------------------------------
+# 
 st.title("Audio Classification")
 
 page = st.sidebar.radio("Navigate", ["Train Model", "Predict"])
